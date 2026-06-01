@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { STUDIO } from '../../lib/identity';
+
+const title = `Play — ${STUDIO.nameKo}`;
+const description = `${STUDIO.nameKo}가 만드는 단순하고 짧은 웹 미니게임 모음.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <header>
+    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight">Play</h1>
+    <p class="mt-4 text-lg text-[var(--color-ink-dim)]">
+      단순하고 짧게 즐기는 웹 미니게임. 한 판 1~3분, 부담 없이.
+    </p>
+  </header>
+
+  <section class="mt-12 p-6 border border-dashed border-[var(--color-line)] rounded-lg">
+    <p class="text-sm text-[var(--color-ink-soft)]">
+      준비 중입니다. 첫 게임이 곧 이곳에 올라옵니다.
+    </p>
+  </section>
+</BaseLayout>

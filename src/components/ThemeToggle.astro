@@ -1,0 +1,72 @@
+---
+---
+
+<button
+  type="button"
+  id="theme-toggle"
+  aria-label="라이트/다크 모드 전환"
+  class="ml-1 w-9 h-9 inline-flex items-center justify-center rounded-md text-[var(--color-ink-dim)] hover:text-[var(--color-ink)] hover:bg-[var(--color-line)] transition-colors"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    class="theme-icon-sun"
+    style="display: var(--sun-display, none);"
+  >
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2"></path>
+    <path d="M12 20v2"></path>
+    <path d="m4.93 4.93 1.41 1.41"></path>
+    <path d="m17.66 17.66 1.41 1.41"></path>
+    <path d="M2 12h2"></path>
+    <path d="M20 12h2"></path>
+    <path d="m6.34 17.66-1.41 1.41"></path>
+    <path d="m19.07 4.93-1.41 1.41"></path>
+  </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    class="theme-icon-moon"
+    style="display: var(--moon-display, inline-block);"
+  >
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+  </svg>
+</button>
+
+<style>
+  :root.dark {
+    --sun-display: inline-block;
+    --moon-display: none;
+  }
+  :root.light {
+    --sun-display: none;
+    --moon-display: inline-block;
+  }
+</style>
+
+<script>
+  const button = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  button?.addEventListener('click', () => {
+    const next = root.classList.contains('dark') ? 'light' : 'dark';
+    root.classList.remove('dark', 'light');
+    root.classList.add(next);
+    localStorage.setItem('theme', next);
+  });
+</script>

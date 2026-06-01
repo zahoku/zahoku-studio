@@ -1,0 +1,15 @@
+---
+import { STUDIO } from '../lib/identity';
+---
+
+<footer class="w-full border-t border-[var(--color-line)] mt-12">
+  <div
+    class="max-w-3xl mx-auto px-6 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-[var(--color-ink-soft)]"
+  >
+    <p>
+      © {new Date().getFullYear()} {STUDIO.nameKo}.
+      <span class="ml-1 opacity-70">{STUDIO.nameHanja}</span>
+    </p>
+    <p class="opacity-80">{STUDIO.motto.ko}.</p>
+  </div>
+</footer>
