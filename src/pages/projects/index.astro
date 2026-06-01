@@ -2,56 +2,21 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { STUDIO } from '../../lib/identity';
 
-const title = `프로젝트 — ${STUDIO.nameKo}`;
-const description = `${STUDIO.nameKo}가 만드는 프로젝트 목록. 현재 개발 중인 작업들.`;
-
-const projects = [
-  {
-    slug: 'haruip',
-    name: 'haruip',
-    tag: '자동 일기 앱',
-    summary: '하루를 자동으로 기록해주는 모바일 앱.',
-    status: 'Coming Soon',
-  },
-  {
-    slug: 'glyfy',
-    name: 'glyfy',
-    tag: '웹 타이핑 게임',
-    summary: '한글·영문 타이핑 연습을 게임으로.',
-    status: 'Coming Soon',
-  },
-] as const;
+const title = `project — ${STUDIO.slug}`;
+const description = `${STUDIO.slug} project. Coming soon.`;
 ---
 
 <BaseLayout title={title} description={description}>
-  <header>
-    <h1 class="text-3xl md:text-4xl font-semibold tracking-tight">프로젝트</h1>
-    <p class="mt-4 text-lg text-[var(--color-ink-dim)]">
-      현재 개발 중인 자호쿠 스튜디오의 프로젝트들. 공개 시점까지는 간단한 안내만.
+  <section class="py-12 md:py-20">
+    <p class="text-xs font-mono tracking-widest text-[var(--color-ink-soft)] uppercase">project</p>
+    <h1
+      class="mt-4 font-serif text-5xl md:text-7xl leading-none tracking-tight text-[var(--color-ink)]"
+    >
+      Soon.
+    </h1>
+    <p class="mt-6 text-base md:text-lg text-[var(--color-ink-dim)] max-w-prose leading-relaxed">
+      카테고리 없음. 만드는 것은 오래간다.
     </p>
-  </header>
-
-  <ul class="mt-12 space-y-4">
-    {
-      projects.map((project) => (
-        <li>
-          <a
-            href={`/projects/${project.slug}/`}
-            class="block border border-[var(--color-line)] rounded-lg p-6 hover:border-[var(--color-accent)] transition-colors"
-          >
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <h2 class="text-xl font-semibold tracking-tight">{project.name}</h2>
-                <p class="mt-1 text-sm text-[var(--color-ink-soft)]">{project.tag}</p>
-                <p class="mt-3 text-[var(--color-ink-dim)]">{project.summary}</p>
-              </div>
-              <span class="shrink-0 text-xs px-2 py-1 rounded-md border border-[var(--color-line)] text-[var(--color-ink-soft)]">
-                {project.status}
-              </span>
-            </div>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+    <p class="mt-2 text-sm font-mono text-[var(--color-ink-soft)]">{STUDIO.motto.en}</p>
+  </section>
 </BaseLayout>

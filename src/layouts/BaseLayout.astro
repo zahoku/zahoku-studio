@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BackgroundHanja from '../components/BackgroundHanja.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { STUDIO } from '../lib/identity';
@@ -8,9 +9,15 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  showHeader?: boolean;
 }
 
-const { title, description = STUDIO.shortDescription.ko, ogImage = '/og-image.png' } = Astro.props;
+const {
+  title,
+  description = STUDIO.shortDescription,
+  ogImage = '/og-image.png',
+  showHeader = true,
+} = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? STUDIO.url).toString();
 const ogImageUrl = new URL(ogImage, Astro.site ?? STUDIO.url).toString();
@@ -18,22 +25,16 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? STUDIO.url).toString();
 const organizationLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: STUDIO.nameKo,
-  alternateName: STUDIO.nameEn,
+  name: STUDIO.slug,
   url: STUDIO.url,
   logo: new URL('/favicon.svg', STUDIO.url).toString(),
-  description: STUDIO.shortDescription.ko,
-  founder: {
-    '@type': 'Person',
-    name: STUDIO.founder,
-  },
+  description: STUDIO.shortDescription,
 };
 
 const websiteLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: STUDIO.nameKo,
-  alternateName: STUDIO.nameEn,
+  name: STUDIO.slug,
   url: STUDIO.url,
   inLanguage: 'ko',
 };
@@ -54,7 +55,7 @@ const websiteLd = {
     <meta name="description" content={description} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={STUDIO.nameKo} />
+    <meta property="og:site_name" content={STUDIO.slug} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -66,16 +67,8 @@ const websiteLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify(organizationLd)}
-    />
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify(websiteLd)}
-    />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationLd)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteLd)} />
 
     <script is:inline>
       (() => {
@@ -88,9 +81,10 @@ const websiteLd = {
 
     <slot name="head" />
   </head>
-  <body class="min-h-dvh flex flex-col">
-    <Header />
-    <main class="flex-1 w-full max-w-3xl mx-auto px-6 py-12 md:py-20">
+  <body class="min-h-dvh flex flex-col bg-[var(--color-paper)]">
+    <BackgroundHanja />
+    {showHeader && <Header />}
+    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12 md:py-20">
       <slot />
     </main>
     <Footer />

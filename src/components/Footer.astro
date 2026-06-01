@@ -2,14 +2,11 @@
 import { STUDIO } from '../lib/identity';
 ---
 
-<footer class="w-full border-t border-[var(--color-line)] mt-12">
+<footer class="w-full mt-24">
   <div
-    class="max-w-3xl mx-auto px-6 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-[var(--color-ink-soft)]"
+    class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between text-xs font-mono text-[var(--color-ink-soft)]"
   >
-    <p>
-      © {new Date().getFullYear()} {STUDIO.nameKo}.
-      <span class="ml-1 opacity-70">{STUDIO.nameHanja}</span>
-    </p>
-    <p class="opacity-80">{STUDIO.motto.ko}.</p>
+    <p>© {new Date().getFullYear()} {STUDIO.slug}</p>
+    <p class="font-serif text-sm opacity-70">{STUDIO.nameHanja}</p>
   </div>
 </footer>

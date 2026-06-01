@@ -1,0 +1,38 @@
+---
+import { STUDIO } from '../lib/identity';
+---
+
+<div class="bg-hanja" aria-hidden="true">
+  <span class="bg-hanja-text">{STUDIO.nameHanja}</span>
+</div>
+
+<style>
+  .bg-hanja {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .bg-hanja-text {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(360px, 60vmin, 1000px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-ink);
+    opacity: 0.04;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  @media (max-width: 640px) {
+    .bg-hanja-text {
+      font-size: 90vw;
+    }
+  }
+</style>

@@ -2,52 +2,69 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { HANJA_BREAKDOWN, STUDIO } from '../lib/identity';
 
-const title = `${STUDIO.nameKo} — ${STUDIO.motto.ko}`;
+const title = `${STUDIO.slug} — ${STUDIO.motto.en}`;
 ---
 
-<BaseLayout title={title} description={STUDIO.shortDescription.ko}>
-  <section class="pt-8 md:pt-16">
-    <p class="text-sm tracking-widest text-[var(--color-ink-soft)] uppercase">
-      {STUDIO.nameEn}
-    </p>
-    <h1 class="mt-3 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1]">
-      {STUDIO.nameKo}
-    </h1>
-    <p class="mt-8 text-xl md:text-2xl text-[var(--color-ink-dim)] leading-relaxed">
-      {STUDIO.motto.ko}.
-    </p>
-  </section>
+<BaseLayout title={title} description={STUDIO.shortDescription} showHeader={false}>
+  <div class="min-h-[calc(100dvh-7rem)] flex flex-col">
+    <header class="pt-2 md:pt-6">
+      <p class="text-xs md:text-sm font-mono tracking-tight text-[var(--color-ink-dim)]">
+        {STUDIO.slug}
+      </p>
+    </header>
 
-  <section class="mt-20 md:mt-28">
-    <h2 class="text-xs tracking-widest text-[var(--color-ink-soft)] uppercase mb-6">
-      自好久 — 자호구
-    </h2>
-    <div class="grid grid-cols-3 gap-4 md:gap-8">
+    <section class="flex-1 flex flex-col justify-center py-16 md:py-24">
+      <h1
+        class="font-serif text-[18vw] md:text-[180px] leading-none tracking-tighter text-[var(--color-ink)] select-none"
+      >
+        {STUDIO.nameHanja}
+      </h1>
+
+      <p class="mt-10 md:mt-14 text-2xl md:text-3xl font-medium tracking-tight leading-snug">
+        {STUDIO.motto.en}
+      </p>
+      <p class="mt-3 text-base md:text-lg text-[var(--color-ink-dim)]">
+        {STUDIO.motto.ko}.
+      </p>
+
+      <p
+        class="mt-12 md:mt-16 text-sm md:text-base font-mono text-[var(--color-ink-soft)] tracking-wide"
+      >
+        {STUDIO.tagline.en} <span class="opacity-60">/ {STUDIO.tagline.ko}</span>
+      </p>
+
+      <div class="mt-14 md:mt-20 flex items-center gap-4">
+        <span
+          aria-disabled="true"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-[var(--color-line)] text-sm font-mono text-[var(--color-ink-soft)]/60 cursor-not-allowed select-none"
+        >
+          project
+          <span class="text-[10px] tracking-widest opacity-70">— SOON</span>
+        </span>
+        <a
+          href="/play/"
+          class="group inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--color-ink)] text-[var(--color-ink-inverse)] text-sm font-mono hover:bg-[var(--color-accent)] transition-colors"
+        >
+          play
+          <span class="transition-transform group-hover:translate-x-0.5">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section
+      class="border-t border-[var(--color-line)] pt-10 pb-2 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
+    >
       {
         HANJA_BREAKDOWN.map((hanja) => (
-          <div class="border border-[var(--color-line)] rounded-lg p-4 md:p-6">
-            <div class="text-4xl md:text-5xl font-serif text-[var(--color-accent)]">
+          <div>
+            <div class="font-serif text-5xl md:text-6xl text-[var(--color-accent)] leading-none">
               {hanja.char}
             </div>
-            <div class="mt-3 text-sm font-medium">{hanja.meaning}</div>
-            <div class="mt-1 text-xs text-[var(--color-ink-soft)]">{hanja.nuance}</div>
+            <p class="mt-4 text-sm font-medium tracking-tight">{hanja.short}</p>
+            <p class="mt-2 text-sm text-[var(--color-ink-dim)] leading-relaxed">{hanja.long}</p>
           </div>
         ))
       }
-    </div>
-    <p class="mt-8 text-base md:text-lg text-[var(--color-ink-dim)] leading-relaxed">
-      자기가 진심으로 좋아하는 길을 길게 간다. AI를 팀원으로 한 1인 스튜디오로서,
-      트래픽·매출 지표 이전에 <strong class="text-[var(--color-ink)]"
-        >인간을 이롭게 하는 가치</strong
-      >와 <strong class="text-[var(--color-ink)]">오래 지속될 가치</strong>를 만든다.
-    </p>
-    <p class="mt-6">
-      <a
-        href="/about"
-        class="text-sm font-medium text-[var(--color-accent)] hover:underline underline-offset-4"
-      >
-        스튜디오 소개 →
-      </a>
-    </p>
-  </section>
+    </section>
+  </div>
 </BaseLayout>
