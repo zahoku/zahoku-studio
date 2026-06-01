@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color tokens — 따뜻한 모노톤 + 자호쿠 톤 */
+  --color-paper: #faf7f2;
+  --color-paper-dark: #14110d;
+  --color-ink: #1c1917;
+  --color-ink-dim: #57534e;
+  --color-ink-soft: #78716c;
+  --color-ink-inverse: #e7e5e4;
+  --color-line: #e7e2d9;
+  --color-line-dark: #2a2520;
+  --color-accent: #8b5a2b;     /* 차분한 갈색 — 한국 전통 한지·먹 톤 */
+  --color-accent-soft: #c19a6b;
+
+  /* Fonts */
+  --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: "Noto Serif KR", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* 다크 모드 — prefers-color-scheme 기반 + .dark 클래스 토글 가능 */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --color-paper: #14110d;
+    --color-ink: #f5f5f4;
+    --color-ink-dim: #a8a29e;
+    --color-ink-soft: #78716c;
+    --color-ink-inverse: #1c1917;
+    --color-line: #2a2520;
+    --color-accent: #c19a6b;
+    --color-accent-soft: #8b5a2b;
+  }
+}
+
+:root.dark {
+  --color-paper: #14110d;
+  --color-ink: #f5f5f4;
+  --color-ink-dim: #a8a29e;
+  --color-ink-soft: #78716c;
+  --color-ink-inverse: #1c1917;
+  --color-line: #2a2520;
+  --color-accent: #c19a6b;
+  --color-accent-soft: #8b5a2b;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+/* Pretendard webfont — JSDelivr CDN */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/PretendardVariable.woff2") format("woff2-variations");
+}
