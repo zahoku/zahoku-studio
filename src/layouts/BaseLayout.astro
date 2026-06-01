@@ -14,6 +14,29 @@ const { title, description = STUDIO.shortDescription.ko, ogImage = '/og-image.pn
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? STUDIO.url).toString();
 const ogImageUrl = new URL(ogImage, Astro.site ?? STUDIO.url).toString();
+
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: STUDIO.nameKo,
+  alternateName: STUDIO.nameEn,
+  url: STUDIO.url,
+  logo: new URL('/favicon.svg', STUDIO.url).toString(),
+  description: STUDIO.shortDescription.ko,
+  founder: {
+    '@type': 'Person',
+    name: STUDIO.founder,
+  },
+};
+
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: STUDIO.nameKo,
+  alternateName: STUDIO.nameEn,
+  url: STUDIO.url,
+  inLanguage: 'ko',
+};
 ---
 
 <!doctype html>
@@ -42,6 +65,17 @@ const ogImageUrl = new URL(ogImage, Astro.site ?? STUDIO.url).toString();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(organizationLd)}
+    />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(websiteLd)}
+    />
 
     <script is:inline>
       (() => {
