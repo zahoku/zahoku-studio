@@ -2,8 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { STUDIO } from '../../lib/identity';
 
+const PLAY_URL = 'https://play.zahoku.com';
 const title = `play — ${STUDIO.slug}`;
-const description = `${STUDIO.slug} play. Short, simple web mini-games.`;
+const description = `${STUDIO.slug} 의 미니게임은 별도 사이트(${PLAY_URL}) 에서 운영됩니다.`;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -12,11 +13,17 @@ const description = `${STUDIO.slug} play. Short, simple web mini-games.`;
     <h1
       class="mt-4 font-serif text-5xl md:text-7xl leading-none tracking-tight text-[var(--color-ink)]"
     >
-      Soon.
+      Play.
     </h1>
     <p class="mt-6 text-base md:text-lg text-[var(--color-ink-dim)] max-w-prose leading-relaxed">
-      Short. Simple. Made to enjoy in a minute.
+      미니게임은 별도 사이트에서 운영합니다.
     </p>
-    <p class="mt-2 text-sm text-[var(--color-ink-dim)]">짧고 단순한 웹 미니게임. 1분이면 충분.</p>
+    <a
+      href={PLAY_URL}
+      class="mt-8 inline-flex items-baseline gap-2 font-serif text-2xl md:text-3xl text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors"
+    >
+      play.zahoku.com
+      <span class="text-base font-mono text-[var(--color-ink-soft)]">→</span>
+    </a>
   </section>
 </BaseLayout>
