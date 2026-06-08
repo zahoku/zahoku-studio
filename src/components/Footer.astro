@@ -2,11 +2,21 @@
 import { STUDIO } from '../lib/identity';
 ---
 
-<footer class="w-full mt-24">
-  <div
-    class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between text-xs font-mono text-[var(--color-ink-soft)]"
-  >
-    <p>© {new Date().getFullYear()} {STUDIO.slug}</p>
-    <p class="font-serif text-sm opacity-70">{STUDIO.nameHanja}</p>
+<footer class="w-full mt-10 border-t border-[var(--color-line)]/60">
+  <div class="max-w-4xl mx-auto px-6 py-4 md:py-5 flex flex-col items-center gap-1 text-center">
+    <p
+      class="font-serif text-sm text-[var(--color-ink-dim)] tracking-tight"
+    >
+      {STUDIO.motto.ko}.
+    </p>
+    <p
+      class="font-serif text-base md:text-lg text-[var(--color-accent)] tracking-[0.4em]"
+      style="font-weight: 900;"
+    >
+      {STUDIO.nameHanja}
+    </p>
+    <p class="mt-0.5 text-[10px] font-mono tracking-widest text-[var(--color-ink-soft)]/70 uppercase">
+      © {new Date().getFullYear()} {STUDIO.slug}
+    </p>
   </div>
 </footer>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { HANJA_BREAKDOWN, STUDIO } from './identity';
+import { STUDIO, WORKS } from './identity';
 
 describe('스튜디오 정체성 상수', () => {
   it('표기 규약: slug는 zahoku-studio, 한자는 自好久', () => {
@@ -9,13 +9,18 @@ describe('스튜디오 정체성 상수', () => {
     expect(STUDIO.url).toBe('https://zahoku.com');
   });
 
-  it('자호구 한자 풀이가 세 글자 모두 포함된다', () => {
-    expect(HANJA_BREAKDOWN).toHaveLength(3);
-    expect(HANJA_BREAKDOWN.map((h) => h.char)).toEqual(['自', '好', '久']);
+  it('tagline·contact·shortDescription이 정의된다', () => {
+    expect(STUDIO.tagline).toBeTruthy();
+    expect(STUDIO.contact).toMatch(/@zahoku\.com$/);
+    expect(STUDIO.shortDescription).toBeTruthy();
   });
 
-  it('모토는 한국어/영문 양쪽 모두 정의된다', () => {
-    expect(STUDIO.motto.ko).toBeTruthy();
-    expect(STUDIO.motto.en).toBeTruthy();
+  it('WORKS는 haruip · glyfy · play 3개로 구성된다', () => {
+    expect(WORKS).toHaveLength(3);
+    expect(WORKS.map((w) => w.name)).toEqual(['haruip', 'glyfy', 'play']);
+  });
+
+  it('모토는 한국어로 정의된다 (내부 정체성용)', () => {
+    expect(STUDIO.motto.ko).toBe('스스로 좋아하는 것을 오래도록');
   });
 });

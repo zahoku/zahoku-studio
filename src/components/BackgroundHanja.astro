@@ -1,38 +1,88 @@
 ---
-import { STUDIO } from '../lib/identity';
+/**
+ * 自好久 한자를 페이지 시각 장식으로 깐다.
+ * 의미부여 없는 brand seal — 정적, 모션 없음.
+ */
 ---
 
 <div class="bg-hanja" aria-hidden="true">
-  <span class="bg-hanja-text">{STUDIO.nameHanja}</span>
+  <span class="bg-hanja-char bg-hanja-1">自</span>
+  <span class="bg-hanja-char bg-hanja-2">好</span>
+  <span class="bg-hanja-char bg-hanja-3">久</span>
 </div>
 
 <style>
   .bg-hanja {
     position: fixed;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     pointer-events: none;
     z-index: -1;
     overflow: hidden;
+    isolation: isolate;
   }
 
-  .bg-hanja-text {
+  .bg-hanja-char {
+    position: absolute;
     font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: clamp(360px, 60vmin, 1000px);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: var(--color-ink);
-    opacity: 0.04;
-    white-space: nowrap;
+    font-weight: 900;
+    line-height: 0.82;
+    font-size: 48vmin;
+    /* 라이트: 크림 배경(#f2eede)과 거의 같은 톤 — 형태만 슬쩍 */
+    color: rgba(225, 213, 183, 0.45);
+    text-shadow: none;
     user-select: none;
+    mix-blend-mode: multiply;
+    filter: none;
   }
 
+  .bg-hanja-1 {
+    top: -4vh;
+    left: -10vw;
+    transform: rotate(-8deg);
+  }
+
+  .bg-hanja-2 {
+    top: 28vh;
+    left: 30vw;
+    transform: rotate(4deg);
+  }
+
+  .bg-hanja-3 {
+    top: 56vh;
+    left: 58vw;
+    transform: rotate(-3deg);
+  }
+
+  /* 다크: 포레스트 올리브(#1f2820)와 거의 같은 톤 — 형태만 슬쩍 */
+  :root.dark .bg-hanja-char,
+  :where(:root:not(.light)) .bg-hanja-char {
+    color: rgba(42, 54, 44, 0.5);
+    text-shadow: none;
+    mix-blend-mode: screen;
+    filter: none;
+  }
+
+  /* 모바일: 自好久 3글자 다 보이게 — 화면 가득 채워 배경 stamp 느낌 */
   @media (max-width: 640px) {
-    .bg-hanja-text {
-      font-size: 90vw;
+    .bg-hanja-char {
+      font-size: 68vw;
+    }
+    .bg-hanja-1 {
+      top: -2vh;
+      left: -15vw;
+      transform: rotate(-6deg);
+    }
+    .bg-hanja-2 {
+      top: 32vh;
+      left: 38vw;
+      transform: rotate(4deg);
+      display: block;
+    }
+    .bg-hanja-3 {
+      top: 65vh;
+      left: -10vw;
+      transform: rotate(-3deg);
+      display: block;
     }
   }
 </style>

@@ -1,70 +1,182 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { HANJA_BREAKDOWN, STUDIO } from '../lib/identity';
+import { STUDIO, WORKS } from '../lib/identity';
 
-const title = `${STUDIO.slug} — ${STUDIO.motto.en}`;
+const title = `${STUDIO.slug}`;
 ---
 
-<BaseLayout title={title} description={STUDIO.shortDescription} showHeader={false}>
-  <div class="min-h-[calc(100dvh-7rem)] flex flex-col">
-    <header class="pt-2 md:pt-6">
-      <p class="text-xs md:text-sm font-mono tracking-tight text-[var(--color-ink-dim)]">
-        {STUDIO.slug}
-      </p>
-    </header>
+<BaseLayout title={title} description={STUDIO.shortDescription}>
+  <section class="hero">
+    <h1 class="wordmark">ZAHOKU-STUDIO</h1>
+    <p class="tagline">{STUDIO.tagline}</p>
+  </section>
 
-    <section class="flex-1 flex flex-col justify-center py-16 md:py-24">
-      <h1
-        class="font-serif text-[18vw] md:text-[180px] leading-none tracking-tighter text-[var(--color-ink)] select-none"
-      >
-        {STUDIO.nameHanja}
-      </h1>
-
-      <p class="mt-10 md:mt-14 text-2xl md:text-3xl font-medium tracking-tight leading-snug">
-        {STUDIO.motto.en}
-      </p>
-      <p class="mt-3 text-base md:text-lg text-[var(--color-ink-dim)]">
-        {STUDIO.motto.ko}.
-      </p>
-
-      <p
-        class="mt-12 md:mt-16 text-sm md:text-base font-mono text-[var(--color-ink-soft)] tracking-wide"
-      >
-        {STUDIO.tagline.en} <span class="opacity-60">/ {STUDIO.tagline.ko}</span>
-      </p>
-
-      <div class="mt-14 md:mt-20 flex items-center gap-4">
-        <span
-          aria-disabled="true"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-[var(--color-line)] text-sm font-mono text-[var(--color-ink-soft)]/60 cursor-not-allowed select-none"
-        >
-          project
-          <span class="text-[10px] tracking-widest opacity-70">— SOON</span>
-        </span>
-        <a
-          href="/play/"
-          class="group inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--color-ink)] text-[var(--color-ink-inverse)] text-sm font-mono hover:bg-[var(--color-accent)] transition-colors"
-        >
-          play
-          <span class="transition-transform group-hover:translate-x-0.5">→</span>
-        </a>
-      </div>
-    </section>
-
-    <section
-      class="border-t border-[var(--color-line)] pt-10 pb-2 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
-    >
+  <section class="works">
+    <ul>
       {
-        HANJA_BREAKDOWN.map((hanja) => (
-          <div>
-            <div class="font-serif text-5xl md:text-6xl text-[var(--color-accent)] leading-none">
-              {hanja.char}
-            </div>
-            <p class="mt-4 text-sm font-medium tracking-tight">{hanja.short}</p>
-            <p class="mt-2 text-sm text-[var(--color-ink-dim)] leading-relaxed">{hanja.long}</p>
-          </div>
+        WORKS.map((work) => (
+          <li class="work">
+            <span class="work-link work-soon">
+              <span class="work-name">{work.name}</span>
+              <span class="work-kind">{work.kind}</span>
+              <span class="work-status">soon</span>
+            </span>
+          </li>
         ))
       }
-    </section>
-  </div>
+    </ul>
+  </section>
+
+  <section class="contact">
+    <a href={`mailto:${STUDIO.contact}`} class="contact-link">{STUDIO.contact}</a>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    padding-top: clamp(16px, 2vh, 32px);
+    padding-bottom: clamp(16px, 2vh, 28px);
+  }
+
+  .wordmark {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    color: var(--color-brand);
+  }
+
+  .tagline {
+    margin: 18px 0 0;
+    font-family: 'Noto Serif KR', var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.5;
+    color: var(--color-accent-soft);
+    max-width: 600px;
+    letter-spacing: -0.005em;
+  }
+
+  /* Works */
+  .works {
+    padding-top: clamp(16px, 2vh, 28px);
+    padding-bottom: clamp(16px, 2vh, 28px);
+    border-top: 1px solid color-mix(in srgb, var(--color-line) 60%, transparent);
+  }
+
+  .works ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .work {
+    margin: 0;
+  }
+
+  .work-link {
+    display: grid;
+    grid-template-columns: minmax(120px, 180px) 1fr auto;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-line) 35%, transparent);
+    text-decoration: none;
+    color: var(--color-ink);
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms;
+  }
+
+  a.work-link:hover {
+    color: var(--color-accent-soft);
+    transform: translateX(6px);
+  }
+
+  .work-name {
+    font-family: 'Noto Serif KR', var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(20px, 2.4vw, 28px);
+    letter-spacing: -0.01em;
+  }
+
+  .work-kind {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--color-ink-dim);
+  }
+
+  .work-arrow,
+  .work-status {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--color-ink-soft);
+    text-transform: uppercase;
+  }
+
+  .work-soon {
+    cursor: default;
+    color: var(--color-ink-dim);
+  }
+
+  .work-soon .work-name {
+    color: var(--color-ink-dim);
+  }
+
+  /* Contact */
+  .contact {
+    padding-top: clamp(16px, 2vh, 28px);
+    padding-bottom: 4px;
+  }
+
+  .contact-link {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: var(--color-ink-dim);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-line) 80%, transparent);
+    padding-bottom: 2px;
+    transition: color 300ms;
+  }
+
+  .contact-link:hover {
+    color: var(--color-accent-soft);
+  }
+
+  @media (max-width: 640px) {
+    .work-link {
+      grid-template-columns: 1fr auto;
+      gap: 6px 12px;
+    }
+
+    .work-name {
+      grid-column: 1 / -1;
+    }
+
+    .work-kind {
+      grid-column: 1;
+    }
+
+    .work-arrow,
+    .work-status {
+      grid-column: 2;
+      align-self: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work-link {
+      transition: color 300ms !important;
+      transform: none !important;
+    }
+    a.work-link:hover {
+      transform: none !important;
+    }
+  }
+</style>
