@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { STUDIO, WORKS } from '../lib/identity';
+import { STUDIO } from '../lib/identity';
 
 const title = `${STUDIO.slug}`;
 ---
@@ -11,6 +11,8 @@ const title = `${STUDIO.slug}`;
     <p class="tagline">{STUDIO.tagline}</p>
   </section>
 
+  {/* works 섹션 — 공개 시점 미정. 정리 전까지 숨김. */}
+  {/*
   <section class="works">
     <ul>
       {
@@ -26,6 +28,7 @@ const title = `${STUDIO.slug}`;
       }
     </ul>
   </section>
+  */}
 
   <section class="contact">
     <a href={`mailto:${STUDIO.contact}`} class="contact-link">{STUDIO.contact}</a>
